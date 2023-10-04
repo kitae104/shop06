@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>상품 정보 리스트(if, unless)</h1>
+    <div>
+        <a th:href="@{/thymeleaf/ex5(param1='데이터1', param2='데이터2')}">ex5</a>
+    </div>
+    <table th:border="1">
+        <thead>
+            <tr>
+                <td>번호</td>
+                <td>상품명</td>
+                <td>상품설명</td>
+                <td>가격</td>
+                <td>상품등록일</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="itemDto, status: ${list}">
+                <!-- if -->
+                <td th:if="${status.even}" th:text="짝수" style="color: red"></td>
+                <td th:unless="${status.even}" th:text="홀수" style="color: blue"></td>
+
+                <td th:text="${status.index}"></td>
+                <td th:text="${itemDto.itemNm}"></td>
+                <td th:text="${itemDto.itemDetail}"></td>
+                <td th:text="${itemDto.price}"></td>
+                <td th:text="${itemDto.regTime}"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

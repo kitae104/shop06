@@ -1,0 +1,64 @@
+####################################
+# 포트 및 프로젝트 명칭 설정
+####################################
+server:
+  port: 80                    # 포트 설정
+
+spring:
+  banner:
+    location: banner/banner.txt
+
+  application:
+    name: springboot-shop     # 프로젝트명 설정
+
+  devtools:
+    livereload:
+      enabled: true           # 자동 리로드 설정
+    restart:
+      enabled: true           # 자동 재실행 설정
+
+  thymeleaf:
+    cache: false              # 캐쉬 없음
+
+####################################
+# 데이터베이스 설정
+####################################
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/spring_shop?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8&allowPublicKeyRetrieval=true&useSSL=false
+    username: root
+    password: 1234
+
+####################################
+# JPA 설정
+####################################
+  jpa:
+    #open-in-view: true      #
+    hibernate:
+      ddl-auto: update      # create, update, ...
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy # 카멜표기를 스네이크 표기로 변환
+    show-sql: true          # SQL 구문 보이기
+    properties:
+      hibernate:
+        format_sql: true    # 포멧 처리해서 보이기
+    database-platform: org.hibernate.dialect.MySQL8Dialect  # MySQL8 버전 사용
+
+  ####################################
+  # Security User
+  ####################################
+  security:
+    user:
+      name: test@test.com
+      password: 1111
+
+####################################
+# 로그 정보 설정
+####################################
+logging:
+  level:
+    org:
+      hibernate:
+        type:
+          descriptor:
+            sql: trace  # 물음표에 바인드 파라미터 출력
