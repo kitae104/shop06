@@ -17,7 +17,7 @@ public class FileService {
         UUID uuid = UUID.randomUUID();      // UUID: Universally Unique IDentifier
         String extension = originalFileName.substring(originalFileName.lastIndexOf("."), originalFileName.length());
         String savedFileName = uuid.toString() + extension;
-        String fileUploadFullPath = uploadPath + "/" + saveFileName;
+        String fileUploadFullPath = uploadPath + "/" + savedFileName;
         FileOutputStream fos = new FileOutputStream(fileUploadFullPath);
         fos.write(fileData);
         fos.close();
