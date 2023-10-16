@@ -15,20 +15,18 @@ import java.time.LocalDateTime;
 @Builder
 public class ItemDto {
 
-    private Long id;             // 상품 코드
+    private Long id;
 
-    private String itemNm;       // 상품명
+    private String itemNm;
 
-    private int price;           // 상품 가격
+    private Integer price;
 
-    private int stockNumber;     // 상품 재고 수량
+    private String itemDetail;
 
-    private String itemDetail;   // 상품 상세 설명
+    private String sellStatCd;
 
-    private String itemSellStatus;
+    private LocalDateTime regTime;
 
-    private LocalDateTime regTime;      // 등록일 (추후 제거)
-
-    private LocalDateTime updateTime;   // 수정일 (추후 제거)
+    private LocalDateTime updateTime;
 
 }

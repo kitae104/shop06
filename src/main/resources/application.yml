@@ -52,6 +52,17 @@ spring:
       name: test@test.com
       password: 1111
 
+  servlet:
+    multipart:
+      max-file-size: 20MB         # 파일 업로드 최대 크기
+      max-request-size: 20MB      # 파일 업로드 최대 크기
+
+####################################
+# 파일 업로드 설정
+####################################
+itemImgLocation: D:/shop/item/    # 상품 이미지 저장 위치
+uploadPath: file:///D:/shop/      # 상품 이미지 업로드 위치
+
 ####################################
 # 로그 정보 설정
 ####################################
