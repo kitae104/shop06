@@ -28,6 +28,8 @@ public class SecurityConfig {
                 .passwordParameter("password")
                 .permitAll());
 
+        http.logout(Customizer.withDefaults());
+
         // 각 페이지에 대한 접근 권한 설정
         http.authorizeHttpRequests(request -> request
                 .requestMatchers("/css/**", "/js/**", "/img/**").permitAll()
