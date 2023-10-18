@@ -1,6 +1,8 @@
 package kr.inhatc.shop.service;
 
+import jakarta.persistence.EntityNotFoundException;
 import kr.inhatc.shop.dto.ItemFormDto;
+import kr.inhatc.shop.dto.ItemImgDto;
 import kr.inhatc.shop.entity.Item;
 import kr.inhatc.shop.entity.ItemImg;
 import kr.inhatc.shop.repository.ItemImgRepository;
@@ -11,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -43,5 +46,23 @@ public class ItemService {
             itemImgService.saveItemImg(itemImg, itemImgFileList.get(i));
         }
         return item.getId();
+    }
+
+    public ItemFormDto getItemDetail(Long itemId){
+
+        List<ItemImg> itemImgList = itemImgRepository.findByItemIdOrderByIdAsc(itemId);
+        List<ItemImgDto> itemImgDtoList = new ArrayList<>();
+
+        for(ItemImg itemImg : itemImgList){
+            ItemImgDto itemImgDto = ItemImgDto.of(itemImg);     // Entity -> Dto
+            itemImgDtoList.add(itemImgDto);
+        }
+
+        Item item = itemRepository.findById(itemId)
+                .orElseThrow(() -> new EntityNotFoundException("해당 상품이 없습니다. id=" + itemId));
+
+        ItemFormDto itemFormDto = ItemFormDto.of(item);             // Entity -> Dto
+        itemFormDto.setItemImgDtoList(itemImgDtoList);              // 이미지 리스트 추가
+        return itemFormDto;
     }
 }
