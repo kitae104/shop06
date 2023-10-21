@@ -2,6 +2,7 @@ package kr.inhatc.shop.entity;
 
 import jakarta.persistence.*;
 import kr.inhatc.shop.constant.ItemSellStatus;
+import kr.inhatc.shop.dto.ItemFormDto;
 import kr.inhatc.shop.utils.audit.BaseEntity;
 import lombok.*;
 
@@ -35,6 +36,14 @@ public class Item extends BaseEntity {
     private String itemDetail;   // 상품 상세 설명
 
     @Enumerated(EnumType.STRING)
-    private ItemSellStatus itemSellStatus;
+    private ItemSellStatus itemSellStatus;  // 상품 판매 상태
+
+    public void updateItem(ItemFormDto itemFormDto) {
+        this.itemNm = itemFormDto.getItemNm();
+        this.price = itemFormDto.getPrice();
+        this.stockNumber = itemFormDto.getStockNumber();
+        this.itemDetail = itemFormDto.getItemDetail();
+        this.itemSellStatus = itemFormDto.getItemSellStatus();
+    }
 
 }
