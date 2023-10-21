@@ -1,6 +1,5 @@
 package kr.inhatc.shop.config;
 
-import kr.inhatc.shop.config.auth.PrincipalDetails;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.security.core.Authentication;
