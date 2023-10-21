@@ -11,7 +11,10 @@ import java.io.IOException;
 public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint {
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
-        response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized(인증 안됨)");    // 401
-        //response.sendRedirect("/authorization-fail");
+        if("XMLHTTPRquest".equals(request.getHeader("x-requested-with"))){
+            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized");
+        } else {
+            response.sendRedirect("/member/login");
+        }
     }
 }
