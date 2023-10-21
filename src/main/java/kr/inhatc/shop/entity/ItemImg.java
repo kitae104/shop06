@@ -31,7 +31,7 @@ public class ItemImg extends BaseEntity {
     private Item item;              // 상품 정보
 
     /**
-     * 상품 이미지 수정
+     * 상품 이미지 수정 - 더티체킹
      * @param oriImgName
      * @param imgName
      * @param imgUrl
