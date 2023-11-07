@@ -5,9 +5,6 @@ server:
   port: 80                    # 포트 설정
 
 spring:
-  banner:
-    location: banner/banner.txt
-
   application:
     name: springboot-shop     # 프로젝트명 설정
 
