@@ -34,8 +34,10 @@ public class ItemFormDto {
 
     private ItemSellStatus itemSellStatus;
 
+    @Builder.Default        // Builder를 사용할 때 기본값을 설정한다.
     private List<ItemImgDto> itemImgDtoList = new ArrayList<>();
 
+    @Builder.Default        // Builder를 사용할 때 기본값을 설정한다.
     private List<Long> itemImgIds = new ArrayList<>();
 
     private static ModelMapper modelMapper = new ModelMapper();
