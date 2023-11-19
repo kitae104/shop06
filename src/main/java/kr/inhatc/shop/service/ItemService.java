@@ -3,11 +3,14 @@ package kr.inhatc.shop.service;
 import jakarta.persistence.EntityNotFoundException;
 import kr.inhatc.shop.dto.ItemFormDto;
 import kr.inhatc.shop.dto.ItemImgDto;
+import kr.inhatc.shop.dto.ItemSearchDto;
 import kr.inhatc.shop.entity.Item;
 import kr.inhatc.shop.entity.ItemImg;
 import kr.inhatc.shop.repository.ItemImgRepository;
 import kr.inhatc.shop.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -76,5 +79,15 @@ public class ItemService {
         }
 
         return item.getId();
+    }
+
+    /**
+     * 관리자 상품 목록 조회
+     * @param itemSearchDto
+     * @param pageable
+     * @return
+     */
+    public Page<Item> getAdminItemPage(ItemSearchDto itemSearchDto, Pageable pageable) {
+        return itemRepository.getAdminItemPage(itemSearchDto, pageable);
     }
 }
