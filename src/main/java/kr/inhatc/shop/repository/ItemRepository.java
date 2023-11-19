@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface ItemRepository extends JpaRepository<Item, Long>,
-        QuerydslPredicateExecutor<Item> {
+        QuerydslPredicateExecutor<Item>, ItemRepositoryCustom {       // ItemRepositoryCustom - 검색기능 추가
 
     List<Item> findByItemNm(String itemNm);     // 해당 이름에 대한 상품 리스트 가져오기
 
