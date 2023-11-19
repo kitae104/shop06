@@ -89,4 +89,9 @@ public class ItemController {
 
         return "redirect:/";
     }
+
+    @GetMapping("/admin/items")
+    public String itemList() {
+        return "item/itemList";
+    }
 }
