@@ -4,6 +4,7 @@ import jakarta.persistence.EntityNotFoundException;
 import kr.inhatc.shop.dto.ItemFormDto;
 import kr.inhatc.shop.dto.ItemImgDto;
 import kr.inhatc.shop.dto.ItemSearchDto;
+import kr.inhatc.shop.dto.MainItemDto;
 import kr.inhatc.shop.entity.Item;
 import kr.inhatc.shop.entity.ItemImg;
 import kr.inhatc.shop.repository.ItemImgRepository;
@@ -89,5 +90,15 @@ public class ItemService {
      */
     public Page<Item> getAdminItemPage(ItemSearchDto itemSearchDto, Pageable pageable) {
         return itemRepository.getAdminItemPage(itemSearchDto, pageable);
+    }
+
+    /**
+     * 메인 페이지에 보여줄 상품 데이터 목록 조회
+     * @param itemSearchDto
+     * @param pageable
+     * @return
+     */
+    public Page<MainItemDto> getMainItemPage(ItemSearchDto itemSearchDto, Pageable pageable) {
+        return itemRepository.getMainItemPage(itemSearchDto, pageable);
     }
 }
