@@ -31,7 +31,7 @@ spring:
 # JPA 설정
 ####################################
   jpa:
-    #open-in-view: true      #
+    open-in-view: true      #
     hibernate:
       ddl-auto: update      # create, update, ...
       naming:
@@ -40,7 +40,7 @@ spring:
     properties:
       hibernate:
         format_sql: true    # 포멧 처리해서 보이기
-    database-platform: org.hibernate.dialect.MySQL8Dialect  # MySQL8 버전 사용
+    #database-platform: org.hibernate.dialect.MySQL8Dialect  # MySQL8 버전 사용
 
   ####################################
   # Security User
