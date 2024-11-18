@@ -28,6 +28,7 @@ public class ItemImgService {
         String imgName = "";
         String imgUrl = "";
 
+        // 파일이 있는 경우 -->  ! 확인 중요
         if(!StringUtils.isEmpty(originalFileName)) {
             imgName = fileService.uploadFile(itemImgLocation, originalFileName, itemImgFile.getBytes());
             imgUrl = "/images/item/" + imgName;

@@ -35,10 +35,10 @@ public class ItemFormDto {
     private ItemSellStatus itemSellStatus;
 
     @Builder.Default        // Builder를 사용할 때 기본값을 설정한다.
-    private List<ItemImgDto> itemImgDtoList = new ArrayList<>();
+    private List<ItemImgDto> itemImgDtoList = new ArrayList<>(); // 상품 이미지 리스트
 
     @Builder.Default        // Builder를 사용할 때 기본값을 설정한다.
-    private List<Long> itemImgIds = new ArrayList<>();
+    private List<Long> itemImgIds = new ArrayList<>(); // 이미지 ID 리스트
 
     private static ModelMapper modelMapper = new ModelMapper();
 
@@ -48,6 +48,6 @@ public class ItemFormDto {
 
     public static ItemFormDto of(Item item) {
         ItemFormDto itemFormDto = modelMapper.map(item, ItemFormDto.class);
-        return itemFormDto;
+        return itemFormDto;  // inline variable 사용하기
     }
 }
