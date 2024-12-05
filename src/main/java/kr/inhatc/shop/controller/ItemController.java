@@ -63,7 +63,7 @@ public class ItemController {
     public String itemDetail(@PathVariable("itemId") Long itemId, Model model) {
 
         try{
-            ItemFormDto itemFormDto = itemService.getItemDetail(itemId);            // 상품 정보 가져오기
+            ItemFormDto itemFormDto = itemService.getItemDetail(itemId);        // 상품 정보 가져오기
             model.addAttribute("itemFormDto", itemFormDto);       // 상품 정보
             return "item/itemForm";
         } catch (EntityNotFoundException e){
@@ -88,9 +88,9 @@ public class ItemController {
         }
 
         try {
-            itemService.updateItem(itemFormDto, itemImgFileList);
+            itemService.updateItem(itemFormDto, itemImgFileList); // 상품 수정
         } catch (IOException e) {
-            model.addAttribute("errorMessage", "파일 저장에 실패했습니다.");
+            model.addAttribute("errorMessage", "상품 수정 중에 오류가 발생했습니다.");
             return "item/itemForm";
         }
 
