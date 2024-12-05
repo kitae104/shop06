@@ -26,10 +26,9 @@ spring:
     url: jdbc:mysql://localhost:3306/spring_shop?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8&allowPublicKeyRetrieval=true&useSSL=false
     username: root
     password: 1234
-
-####################################
-# JPA 설정
-####################################
+  ####################################
+  # JPA 설정
+  ####################################
   jpa:
     open-in-view: true      #
     hibernate:
@@ -41,6 +40,9 @@ spring:
       hibernate:
         format_sql: true    # 포멧 처리해서 보이기
     #database-platform: org.hibernate.dialect.MySQL8Dialect  # MySQL8 버전 사용
+    defer-datasource-initialization: true  # JPA가 데이터베이스를 초기화하기 전에 스키마와 데이터를 로드
+
+
 
   ####################################
   # Security User
