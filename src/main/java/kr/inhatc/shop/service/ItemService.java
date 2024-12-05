@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-@Transactional
+@Transactional // 트랜잭션 처리
 @RequiredArgsConstructor
 public class ItemService {
 
@@ -34,7 +34,7 @@ public class ItemService {
     public Long saveItem(ItemFormDto itemFormDto, List<MultipartFile> itemImgFileList) throws IOException {
 
         // 상품 등록
-        Item item = itemFormDto.createItem();
+        Item item = itemFormDto.createItem(); // item으로부터 id 생성을 위해.
         itemRepository.save(item);
 
         // 이미지 등록
@@ -42,23 +42,28 @@ public class ItemService {
             ItemImg itemImg = new ItemImg();
             itemImg.setItem(item);
 
-            if(i == 0) {
+            if(i == 0) {   // 첫번째 이미지를 대표 이미지로 설정
                 itemImg.setRepImgYn("Y");
             } else {
                 itemImg.setRepImgYn("N");
             }
-            itemImgService.saveItemImg(itemImg, itemImgFileList.get(i));
+            itemImgService.saveItemImg(itemImg, itemImgFileList.get(i)); // 이미지 저장
         }
-        return item.getId();
+        return item.getId();    // 상품 id 반환
     }
 
+    /**
+     * 상품 상세 조회
+     * @param itemId
+     * @return
+     */
     public ItemFormDto getItemDetail(Long itemId){
 
         List<ItemImg> itemImgList = itemImgRepository.findByItemIdOrderByIdAsc(itemId);
         List<ItemImgDto> itemImgDtoList = new ArrayList<>();
 
         for(ItemImg itemImg : itemImgList){
-            ItemImgDto itemImgDto = ItemImgDto.of(itemImg);     // Entity -> Dto
+            ItemImgDto itemImgDto = ItemImgDto.of(itemImg);
             itemImgDtoList.add(itemImgDto);
         }
 
@@ -71,14 +76,17 @@ public class ItemService {
     }
 
     public Long updateItem(ItemFormDto itemFormDto, List<MultipartFile> itemImgFileList) throws IOException {
-        Item item = itemRepository.findById(itemFormDto.getId()).orElseThrow(EntityNotFoundException::new);
+        Item item = itemRepository
+                .findById(itemFormDto.getId()).orElseThrow(EntityNotFoundException::new);
+        // 변경 감지(Dirty Checking) : 자동으로 저장--> 따로 save()를 호출할 필요 없음.
         item.updateItem(itemFormDto);
+
         List<Long> itemImgIds = itemFormDto.getItemImgIds();
 
+        // 이미지 수정 처리
         for (int i = 0; i < itemImgFileList.size(); i++) {
             itemImgService.updateItemImg(itemImgIds.get(i), itemImgFileList.get(i));  // 번호와 파일 전달 -> 수정
         }
-
         return item.getId();
     }
 
